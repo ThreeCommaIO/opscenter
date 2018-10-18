@@ -2,6 +2,8 @@
 set -e
 CLUSTER_NAME=${CLUSTER_NAME:-test}
 CLUSTER_SEEDS=${CLUSTER_SEEDS:-127.0.0.1}
+CLUSTER_USERNAME=${CLUSTER_USERNAME:-}
+CLUSTER_PASSWORD=${CLUSTER_PASSWORD:-}
 STORAGE_SEEDS=${STORAGE_SEEDS:-127.0.0.1}
 CONFIG=/opt/opscenter/conf/clusters/$CLUSTER_NAME.conf
 
@@ -34,11 +36,11 @@ username =
 ssl_truststore_password =
 cql_port = 9042
 seed_hosts = $CLUSTER_SEEDS
-password =
+password = $CLUSTER_PASSWORD
 ssl_keystore_password =
 ssl_keystore =
 ssl_truststore =
-username =
+username = $CLUSTER_USERNAME
 EOF
 
 exec "/entrypoint.sh" "-f" "$@"
